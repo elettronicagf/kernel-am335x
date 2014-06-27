@@ -139,6 +139,11 @@
 				st,max-limit-y = <550>;
 				st,max-limit-z = <750>;
 			};
+			at24@50 {
+				compatible = "at24,24c64";
+				pagesize = <32>;
+				reg = <0x50>;
+			};
 		};
 
 		epwmss2: epwmss@48304000 {
