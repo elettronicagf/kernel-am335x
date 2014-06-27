@@ -148,6 +148,11 @@
 				compatible = "tmp102";
 				reg = <0x48>;
 			};
+			rtc@50 {
+				compatible = "rtc-ds1307,mcp7941x";
+				reg = <0x6F>;
+			};
+
 		};
 
 		epwmss2: epwmss@48304000 {
