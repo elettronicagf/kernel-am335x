@@ -32,7 +32,7 @@
 
 	am33xx_pinmux: pinmux@44e10800 {
 		pinctrl-names = "default";
-		pinctrl-0 = <&user_leds_s0 &gpio_keys_s0 &lcd_pins_s0>;
+		pinctrl-0 = <&user_leds_s0 &gpio_keys_s0 &lcd_pins_s0 &ehrpwm0_pins>;
 
 		user_leds_s0: user_leds_s0 {
 			pinctrl-single,pins = <
@@ -85,9 +85,9 @@
 			>;
 		};
 
-		ecap2_pins: backlight_pins {
+		ehrpwm0_pins: ehrpwm0_pins {
 			pinctrl-single,pins = <
-				0x19c 0x4	/* mcasp0_ahclkr.ecap2_in_pwm2_out MODE4 */
+				0x190 0x17	/* mcasp0_ahclkr.ecap2_in_pwm2_out MODE2 */
 			>;
 		};
 
@@ -132,13 +132,11 @@
 			};
 		};
 
-		epwmss2: epwmss@48304000 {
+		epwmss0: epwmss@48300000 {
 			status = "okay";
 
-			ecap2: ecap@48304100 {
+			ehrpwm0: ehrpwm@48300200 {
 				status = "okay";
-				pinctrl-names = "default";
-				pinctrl-0 = <&ecap2_pins>;
 			};
 		};
 	};
@@ -220,7 +218,7 @@
 
 	backlight {
 		compatible = "pwm-backlight";
-		pwms = <&ecap2 0 50000 1>;
+		pwms = <&ehrpwm0 0 50000 1>;
 		brightness-levels = <0 58 61 66 75 90 125 170 255>;
 		default-brightness-level = <8>;
 	};
@@ -319,16 +317,16 @@
 	status = "okay";
 
 	display-timings {
-		480x272p57 {
-			clock-frequency = <9000000>;
-			hactive = <480>;
-			vactive = <272>;
-			hfront-porch = <8>;
-			hback-porch = <43>;
-			hsync-len = <4>;
-			vback-porch = <12>;
-			vfront-porch = <4>;
-			vsync-len = <10>;
+		800x480p60 {
+			clock-frequency = <30000000>;
+			hactive = <800>;
+			vactive = <480>;
+			hfront-porch = <39>;
+			hback-porch = <39>;
+			hsync-len = <47>;
+			vback-porch = <29>;
+			vfront-porch = <13>;
+			vsync-len = <2>;
 			hsync-active = <1>;
 			vsync-active = <1>;
 		};
