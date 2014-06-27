@@ -152,7 +152,11 @@
 				compatible = "rtc-ds1307,mcp7941x";
 				reg = <0x6F>;
 			};
-
+			rtc-eeprom@57 {
+				compatible = "at24,24c01";
+				pagesize = <1>;
+				reg = <0x57>;
+			};
 		};
 
 		epwmss2: epwmss@48304000 {
