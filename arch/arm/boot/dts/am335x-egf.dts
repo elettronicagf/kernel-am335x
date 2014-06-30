@@ -96,6 +96,18 @@
 				0x160 0x2f /* GPIO0_6 (PIN_INPUT | MUX_MODE7) */
 			>;
 		};
+		dcan0_pins: dcan0_pins {
+			pinctrl-single,pins = <
+				0x178 0x12	/* uart1_ctsn.dcan0_tx, OUTPUT | MODE2 */
+				0x17c 0x32	/* uart1_rtsn.dcan0_rx, OUTPUT | MODE2 */
+			>;
+		};
+		dcan1_pins: dcan1_pins {
+			pinctrl-single,pins = <
+				0x180 0x12	/* uart1_rx.dcan1_tx, OUTPUT | MODE2 */
+				0x184 0x32	/* uart1_tx.dcan1_rx, OUTPUT | MODE2 */
+			>;
+		};
 
 	};
 
@@ -312,6 +324,18 @@
 	status = "okay";
 	vmmc-supply = <&vmmc_reg>;
 	ti,non-removable;
+};
+
+&dcan0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&dcan0_pins>;
+	status = "okay";
+};
+
+&dcan1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&dcan1_pins>;
+	status = "okay";
 };
 
 &lcdc {
