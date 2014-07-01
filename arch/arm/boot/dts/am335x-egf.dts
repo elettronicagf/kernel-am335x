@@ -108,6 +108,11 @@
 				0x184 0x32	/* uart1_tx.dcan1_rx, OUTPUT | MODE2 */
 			>;
 		};
+        dvi_ctrl_pins: dvi_ctrl_pins {
+			pinctrl-single,pins = <
+				0x1b0 0x7	/* xdma_event_intr0.GPIO0_19, OUTPUT | MODE7 */
+			>;
+		};
 
 	};
 
